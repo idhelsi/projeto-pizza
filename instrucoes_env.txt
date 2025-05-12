@@ -1,0 +1,9 @@
+DATABASE_URL="postgresql://postgres:sua_senha@localhost:5432/projeto_pizza?schema=public"
+
+Substitua "sua_senha" pela senha do seu PostgreSQL.
+Substitua "5432" pela porta do seu PostgreSQL se você estiver usando uma porta diferente.
+
+Depois de criar o arquivo .env, você pode executar os seguintes comandos:
+
+npx prisma generate
+npx prisma db push 
