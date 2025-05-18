@@ -10,7 +10,8 @@ type Props = {
     data: Product
 }
 
-const handleAddToCart = () => {
+export const PizzaItem = ({ data }: Props) => {
+
     const cart = useCart()
 
     const handleAddToCart = () => {
@@ -20,9 +21,8 @@ const handleAddToCart = () => {
         });
         cart.setOpen(true)
     }
-}
+    
 
-export const PizzaItem = ({ data }: Props) => {
     return (
         <div className="text-sm bg-secondary rounded-md p-4">
             <Image 
