@@ -35,4 +35,4 @@ export const LoginAreaButton = ({ initialState}: Props) => {
             <Button onClick={() => auth.setOpen(true)}>Login / Cadastro</Button>
         )
     }
-}
+} 
