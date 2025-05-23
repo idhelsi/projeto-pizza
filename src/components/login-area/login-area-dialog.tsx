@@ -6,6 +6,9 @@ import { useAuth } from '@/stores/auth'
 import { ArrowLeftIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { LoginAreaStepEmail } from './login-area-step-email'
+import { LoginAreaSignup } from './login-area-step-signup'
+import { getCookie } from 'cookies-next/client'
+import { LoginAreaSignin } from './login-area-step-signin'
 
 type Steps = "EMAIL" | "SIGNUP" | "SIGNIN"
 
@@ -15,12 +18,17 @@ export const LoginAreaDialog = () => {
     const [step, setStep] = useState<Steps>("EMAIL")
     const [emailField, setEmailField] = useState("")
 
+    useEffect(() => {
+        const token = getCookie('token')
+        if (token) auth.setToken(token)
+    }, [])
+
     const handleStepEmail = (hasEmail: boolean, email: string) => {
         setEmailField(email)
         if (hasEmail) {
-            setStep("SIGNUP")
-        } else {
             setStep("SIGNIN")
+        } else {
+            setStep("SIGNUP")
         }
     }
 
@@ -52,11 +60,15 @@ export const LoginAreaDialog = () => {
                     {step === 'EMAIL' && 
                         <LoginAreaStepEmail onValidate={handleStepEmail} />
                     }
-                    {step === 'SIGNUP' && 
-                        <div>Login</div>
-                    }
                     {step === 'SIGNIN' && 
-                        <div>Cadastro</div>
+                        <LoginAreaSignin 
+                            email={emailField}
+                        />
+                    }
+                    {step === 'SIGNUP' && 
+                       <LoginAreaSignup
+                            email={emailField}
+                        />
                     }
                     
                 </div>

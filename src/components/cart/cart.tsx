@@ -1,28 +1,33 @@
 "use client"
 
-import { useCart } from "@/stores/cart"
-import { Drawer, DrawerContent, DrawerTitle } from "../ui/drawer"
-import { useEffect, useState } from "react"
-import { CartEmpty } from "./cart-empty"
-import { CartList } from "./cart-list"
+import { Drawer } from 'vaul';
+import { useCart } from "@/stores/cart";
+import { CartEmpty } from "./cart-empty";
+import { CartList } from "./cart-list";
 
 export const Cart = () => {
-    const cart = useCart();
-    
-    const [open, setOpen] = useState(cart.open);
-    useEffect(() => setOpen(cart.open), [cart])
+  const cart = useCart();
 
-    return (
-        <Drawer
-            direction="right"
-            open={open}
-            onOpenChange={open => cart.setOpen(open)}
+  return (
+    <Drawer.Root 
+      direction="right" 
+      open={cart.open} 
+      onOpenChange={(open) => cart.setOpen(open)}
+    >
+      <Drawer.Portal>
+        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+        <Drawer.Content
+          className="right-2 top-2 bottom-2 fixed z-10 outline-none w-[310px] flex"
+          style={{ '--initial-transform': 'calc(100% + 8px)' } as React.CSSProperties}
         >
-            <DrawerContent className="p-4">
-                <DrawerTitle>Carrinho</DrawerTitle>
-                {cart.items.length <= 0 && <CartEmpty />}
-                {cart.items.length > 0 && <CartList />}
-            </DrawerContent>
-        </Drawer>
-    )
+          <div className="bg-white h-full w-full grow p-4 flex flex-col rounded-[16px]">
+            <Drawer.Title className="font-medium mb-4 text-zinc-900">Carrinho</Drawer.Title>
+            
+            {cart.items.length <= 0 && <CartEmpty />}
+            {cart.items.length > 0 && <CartList />}
+          </div>
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
+  )
 }
