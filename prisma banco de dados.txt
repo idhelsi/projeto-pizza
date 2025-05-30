@@ -1,0 +1,14 @@
+.npx prisma migrate dev
+-ler o schema na pasta prisma e vai criar uma tabela no bando de dados conectado se ja tiver nao cria nada se criar uma nova use esse commando novamente
+
+-tem o arquivo seed.ts na pasta prisma que cria os itens no banco de dado
+.npx prisma db seed
+-adiciona os itens ao banco de dados
+
+
+AGORA VAMOS PARA O STRIPE PAGAMENTOS
+
+.npm i stripe @stripe/stripe-js
+biblioteca do stripe
+
+na pasta src/lib/ criar um arquivo stripe.ts para ligar as chaves pega na api do site do stripe

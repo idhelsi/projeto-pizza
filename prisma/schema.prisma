@@ -15,47 +15,49 @@ datasource db {
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  name String
-  image String @default("default.jpg")
-  price Decimal @db.Money()
-  ingredients String?
+  id            Int             @id @default(autoincrement())
+  name          String
+  image         String          @default("default.jpg")
+  price         Decimal         @db.Money()
+  ingredients   String?
   orderProducts OrderProducts[]
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
   password String
-  token String?
-  orders Order[]
+  token    String?
+  orders   Order[]
 }
 
 model Order {
-  id Int @id @default(autoincrement())
-  userId Int
-  createdAt DateTime @default(now())
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  createdAt DateTime    @default(now())
   updatedAt DateTime?
-  obs String?
-  status OrderStatus @default(INITIALIZED)
+  obs       String?
+  status    OrderStatus @default(INITIALIZED)
+  subtotal  Decimal
 
-  user User @relation(fields: [userId], references: [id])
+  user          User            @relation(fields: [userId], references: [id])
   orderProducts OrderProducts[]
 }
 
 model OrderProducts {
-  id Int @id @default(autoincrement())
-  orderId Int
+  id        Int     @id @default(autoincrement())
+  orderId   Int
   productId Int
-  quantity Int
+  quantity  Int
+  price     Decimal
 
-  order Order @relation(fields: [orderId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
   product Product @relation(fields: [productId], references: [id])
 }
 
 enum OrderStatus {
-  INITIALIZED 
+  INITIALIZED
   IN_REVIEW
   PAID
   SENT
