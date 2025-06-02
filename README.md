@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍕 Projeto Pizzaria
 
-## Getting Started
+## Descrição do Projeto
 
-First, run the development server:
+Este é um projeto de uma aplicação web de pizzaria desenvolvida com Next.js, utilizando tecnologias modernas de desenvolvimento web.
 
+## 🚀 Tecnologias Utilizadas
+
+- **Frontend**: 
+  - Next.js 15
+  - React 19
+  - Tailwind CSS
+  - Shadcn/ui
+  - Zustand (Gerenciamento de Estado)
+
+- **Backend**:
+  - Prisma ORM
+  - PostgreSQL
+  - Stripe (Pagamentos)
+  - TypeScript
+
+- **Autenticação**:
+  - Cookies
+  - JWT
+
+## 📋 Funcionalidades
+
+- Listagem de pizzas
+- Carrinho de compras
+- Autenticação de usuários
+- Processamento de pagamentos com Stripe
+- Gerenciamento de pedidos
+
+## 🔧 Configuração do Ambiente
+
+### Pré-requisitos
+
+- Node.js (versão 20 ou superior)
+- PostgreSQL
+- Conta no Stripe
+
+### Instalação
+
+1. Clone o repositório
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/seu-usuario/projeto-pizza.git
+cd projeto-pizza
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente
+Crie um arquivo `.env` baseado no `exemple.env`:
+```
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+STRIPE_WEBHOOK_KEY="sua_chave_webhook"
+STRIPE_SECRET_KEY="sua_chave_secreta"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="sua_chave_publica"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Prepare o banco de dados
+```bash
+npx prisma generate
+npx prisma db push
+npx prisma db seed
+```
 
-## Learn More
+## 🖥️ Scripts Disponíveis
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Compila o projeto para produção
+- `npm start`: Inicia o servidor de produção
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔒 Configurações de Segurança
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Autenticação via JWT
+- Senhas criptografadas com bcrypt
+- Integração segura com Stripe
 
-## Deploy on Vercel
+## 📦 Estrutura do Projeto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+projeto-pizza/
+├── prisma/             # Configurações do Prisma ORM
+├── public/             # Arquivos estáticos
+├── src/
+│   ├── app/            # Rotas e páginas do Next.js
+│   ├── components/     # Componentes React
+│   ├── lib/            # Utilitários e configurações
+│   ├── services/       # Lógica de negócio
+│   └── stores/         # Gerenciamento de estado com Zustand
+└── README.md
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Integração com Serviços Externos
+
+- **Stripe**: Processamento de pagamentos
+- **PostgreSQL**: Banco de dados relacional
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Faça um push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT.
+
+## 🚧 Status do Projeto
+
+🟢 Em desenvolvimento
